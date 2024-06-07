@@ -18,17 +18,28 @@ app.use(express.static(path.join(path.resolve(), "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors({
-  origin:[process.env.FRONTEND_URL],
-  methods:["GET","POST","PUT","DELETE"],
-  credentials:true,
- 
-}));
+app.use(
+  cors({
+    origin: [process.env.FRONTEND_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use("/users", userRouter);
 app.use("/task", taskRouter);
 //error handling middleware
 app.use(errorMiddleware);
 
 app.get("/", (req, res) => {
-  res.send("Server running great");
+  res.json({
+    message: "to-do app server running",
+    endpoints: [
+      {
+        users: ["/all", "/me", "/new", "/login", "/logout"],
+      },
+      {
+        task: ["/create", "/my", "/id"],
+      },
+    ],
+  });
 });
