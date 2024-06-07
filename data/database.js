@@ -5,7 +5,7 @@ export const createDB=()=>{
   .connect(process.env.MONGO_URI, {
     dbName: "backendApi",
   })
-  .then(() => console.log("connected to mongoDB"))
+  .then((c) => console.log(`connected to mongoDB with ${c.connection.host}`))
   .catch((e) => console.log(e));
 
 }
