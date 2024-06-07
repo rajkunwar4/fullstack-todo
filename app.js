@@ -25,8 +25,8 @@ app.use(
     credentials: true,
   })
 );
-app.use("api/users", userRouter);
-app.use("api/task", taskRouter);
+app.use("/api/users", userRouter);
+app.use("/api/task", taskRouter);
 //error handling middleware
 app.use(errorMiddleware);
 
